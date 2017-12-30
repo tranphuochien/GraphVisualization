@@ -60,5 +60,10 @@ namespace AssemblyCSharp
         {
             return mId;
         }
+
+        public override string GetUrl()
+        {
+            return mImgUrl;
+        }
     }
 }
