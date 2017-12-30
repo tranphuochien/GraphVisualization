@@ -7,9 +7,10 @@ namespace AssemblyCSharp
 
 		public override void GenerateGraph (Graph graph)
 		{
-			AbstractGraphNode firstNode =  graph.NewNode();
-			AbstractGraphNode secondNode = graph.NewNode ();
-			AbstractGraphNode thirdNode = graph.NewNode ();
+            SimpleGraphNode tmp = new SimpleGraphNode(null, 0);
+			AbstractGraphNode firstNode =  graph.NewNode(tmp);
+			AbstractGraphNode secondNode = graph.NewNode (tmp);
+			AbstractGraphNode thirdNode = graph.NewNode (tmp);
 
 			graph.NewEdge (firstNode, secondNode);
 			graph.NewEdge (secondNode, firstNode);

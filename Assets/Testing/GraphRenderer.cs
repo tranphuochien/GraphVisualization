@@ -28,8 +28,8 @@ public class GraphRenderer : MonoBehaviour {
 
 	private void GenerateTestData()
 	{
-		new ExponentialGraphGenerator ().GenerateGraph (graph);
-		//new MultiEdgesForSingleNodeGraphGenerator().GenerateGraph(graph);
+		//new ExponentialGraphGenerator ().GenerateGraph (graph);
+		new MultiEdgesForSingleNodeGraphGenerator().GenerateGraph(graph);
 	}
 
 	void Update ()

@@ -18,9 +18,9 @@ namespace AssemblyCSharp
 		}
 
 
-		public AbstractGraphNode NewNode() 
+		public AbstractGraphNode NewNode(AbstractGraphNode node) 
 		{
-			return graphBackend.NewNode ();
+			return graphBackend.NewNode (node);
 		}
 
 		public AbstractGraphEdge NewEdge(AbstractGraphNode from, AbstractGraphNode to)
