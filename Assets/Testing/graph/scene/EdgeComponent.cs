@@ -18,14 +18,22 @@ namespace AssemblyCSharp
 		{
 			LineRenderer line = GetVisualComponent ().GetComponent<LineRenderer> ();
 			line.name = "Edge_" + graphEdge.GetId ();
-
-			float angle = UnityEngine.Random.Range (0, 360);
+            line.startColor = line.endColor = GetColorByRelationshipScore(graphEdge.GetScoreRelationship());
+        
+            float angle = UnityEngine.Random.Range (0, 360);
 		
 			float xRotation = Mathf.Cos (Mathf.Deg2Rad * angle) * 100;
 			float yRotation = Mathf.Sin (Mathf.Deg2Rad * angle) * 100;
 			float zRotation = Mathf.Cos (Mathf.Deg2Rad * angle) * 100;
 			GetVisualComponent().transform.Rotate(new Vector3 (xRotation, yRotation, zRotation));
 		}
+
+        private Color GetColorByRelationshipScore(int score)
+        {
+
+            //return default color
+            return new Color(127, 255, 0);
+        }
 
 		public AbstractGraphEdge GetGraphEdge()
 		{

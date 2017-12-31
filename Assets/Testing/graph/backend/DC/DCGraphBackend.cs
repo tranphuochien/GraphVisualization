@@ -29,7 +29,7 @@ namespace AssemblyCSharp
             NotifyBackendEdgeCreated(newEdge);
             return newEdge;
         }
-
+        
         public override AbstractGraphNode GetNodeById(long nodeId)
         {
             return AllGraphNodes.Find(node => {

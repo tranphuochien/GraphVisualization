@@ -8,6 +8,7 @@ namespace AssemblyCSharp
     class DCGraphEdge : AbstractGraphEdge
     {
         private long id;
+        private int score = 0;
         private AbstractGraphNode startNode;
         private AbstractGraphNode endNode;
 
@@ -31,6 +32,11 @@ namespace AssemblyCSharp
         public override long GetId()
         {
             return id;
+        }
+
+        public override int GetScoreRelationship()
+        {
+            return score;
         }
     }
 }
