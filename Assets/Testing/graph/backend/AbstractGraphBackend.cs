@@ -6,7 +6,7 @@ namespace AssemblyCSharp
 	{
 		private GraphBackendListeners listeners = new GraphBackendListeners();
 	
-		public abstract AbstractGraphNode NewNode(AbstractGraphNode newNode);
+		public abstract AbstractGraphNode NewNode(AbstractModel data);
 
 		public abstract AbstractGraphEdge NewEdge(AbstractGraphNode from, AbstractGraphNode to);
 

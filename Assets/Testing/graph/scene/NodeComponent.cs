@@ -18,9 +18,10 @@ namespace AssemblyCSharp
 			SpriteRenderer sprite = GetVisualComponent ().GetComponent<SpriteRenderer> ();
 			sprite.name = "Node_" + graphNode.GetId ();
 
-            TextMesh text = GetVisualComponent ().GetComponentInChildren<TextMesh>();
-            text.text = "" + graphNode.GetId ();
-            //GetVisualComponent().GetComponent<LoadImage>().url = graphNode.GetUrl();
+            //TextMesh text = GetVisualComponent ().GetComponentInChildren<TextMesh>();
+            //text.text = "" + graphNode.GetId ();
+            LoadImage avatar = GetVisualComponent().GetComponentInChildren<LoadImage>();
+            avatar.url = graphNode.GetUrl();
 		}
 
 		public AbstractGraphNode GetGraphNode()

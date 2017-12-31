@@ -10,17 +10,21 @@ namespace AssemblyCSharp
         private List<AbstractGraphNode> AllGraphNodes = new List<AbstractGraphNode>();
         private List<AbstractGraphEdge> AllGraphEdges = new List<AbstractGraphEdge>();
 
-        public override AbstractGraphNode NewNode(AbstractGraphNode newNode)
+        public override AbstractGraphNode NewNode(AbstractModel data)
         {
-            //DCGraphNode newNode = new DCGraphNode(this, AllGraphNodes.Count);
-            AllGraphNodes.Add(newNode);
-            NotifyBackendNodeCreated(newNode);
-            return newNode;
+            if (data is DCProfile)
+            {
+                DCGraphNode newNode = new DCGraphNode(this, (DCProfile)data);
+                AllGraphNodes.Add(newNode);
+                NotifyBackendNodeCreated(newNode);
+                return newNode;
+            }
+            return null;
         }
 
         public override AbstractGraphEdge NewEdge(AbstractGraphNode from, AbstractGraphNode to)
         {
-            SimpleGraphEdge newEdge = new SimpleGraphEdge(AllGraphEdges.Count, from, to);
+            DCGraphEdge newEdge = new DCGraphEdge(AllGraphEdges.Count, from, to);
             AllGraphEdges.Add(newEdge);
             NotifyBackendEdgeCreated(newEdge);
             return newEdge;

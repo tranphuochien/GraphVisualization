@@ -8,7 +8,7 @@ namespace AssemblyCSharp
 		private List<AbstractGraphNode> AllGraphNodes = new List<AbstractGraphNode>();
 		private List<AbstractGraphEdge> AllGraphEdges = new List<AbstractGraphEdge>();
 
-		public override AbstractGraphNode NewNode (AbstractGraphNode node)
+		public override AbstractGraphNode NewNode (AbstractModel data)
 		{
 			SimpleGraphNode newNode = new SimpleGraphNode (this, AllGraphNodes.Count);
 			AllGraphNodes.Add (newNode);

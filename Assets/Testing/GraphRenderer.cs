@@ -23,7 +23,8 @@ public class GraphRenderer : MonoBehaviour {
 
 	private AbstractGraphBackend InitializeGraphBackend()
 	{
-		return new SimpleGraphBackend ();
+        //return new SimpleGraphBackend ();
+        return new DCGraphBackend();
 	}
 
 	private void GenerateTestData()

@@ -8,62 +8,41 @@ namespace AssemblyCSharp
     class DCGraphNode : AbstractGraphNode
     {
         private DCGraphBackend graphBackend;
-        private long mId;
-        private string mAlias;
-        private string mRealName;
-        private string mCity;
-        private string mAlignment;
-        private string mOccupation;
-        private string mFacebook;
-        private string mImgUrl;
+        private DCProfile mData;
 
         public DCGraphNode(DCGraphBackend dcGraphBackend,
-            long id,
-            string alias,
-            string realName,
-            string city,
-            string alignment,
-            string occupation,
-            string facebook,
-             string imgUrl)
+            DCProfile profile)
         {
             this.graphBackend = dcGraphBackend;
-            this.mId = id;
-            this.mAlias = alias;
-            this.mRealName = realName;
-            this.mCity = city;
-            this.mAlignment = alignment;
-            this.mOccupation = occupation;
-            this.mFacebook = facebook;
-            this.mImgUrl = imgUrl;
+            this.mData = profile;
         }
 
 
         public override void Accept(GraphEdgeVisitor graphEdgeVisitor)
         {
-            graphBackend.FindEdges(mId).ForEach(edge => {
+            graphBackend.FindEdges(mData.Id).ForEach(edge => {
                 graphEdgeVisitor(edge);
             });
         }
 
         public override long GetDegree()
         {
-            return graphBackend.FindEdges(mId).Count;
+            return graphBackend.FindEdges(mData.Id).Count;
         }
 
         public override bool IsAdjacent(AbstractGraphNode graphNode)
         {
-            return graphBackend.FindEdges(mId, graphNode.GetId()).Count > 0;
+            return graphBackend.FindEdges(mData.Id, graphNode.GetId()).Count > 0;
         }
 
         public override long GetId()
         {
-            return mId;
+            return mData.Id;
         }
 
         public override string GetUrl()
         {
-            return mImgUrl;
+            return mData.ImgUrl;
         }
     }
 }

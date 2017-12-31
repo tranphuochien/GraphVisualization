@@ -18,12 +18,25 @@ namespace AssemblyCSharp
 		}
 
 
-		public AbstractGraphNode NewNode(AbstractGraphNode node) 
+		public AbstractGraphNode NewNode(String className, AbstractModel data) 
 		{
-			return graphBackend.NewNode (node);
+            switch (className)
+            {
+                case "dcmodel":
+                    return (DCGraphNode) graphBackend.NewNode(data);
+                case "simplemodel":
+                    return graphBackend.NewNode(null);
+                default:
+                    return graphBackend.NewNode(null);
+            }
 		}
 
-		public AbstractGraphEdge NewEdge(AbstractGraphNode from, AbstractGraphNode to)
+        public AbstractGraphNode NewNode()
+        {
+            return this.NewNode(Constant.SIMPLE_MODEL, null);
+        }
+
+        public AbstractGraphEdge NewEdge(AbstractGraphNode from, AbstractGraphNode to)
 		{
 			return graphBackend.NewEdge (from, to);
 		}
