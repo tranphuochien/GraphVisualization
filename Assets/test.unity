@@ -438,7 +438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5330273cfafdcb47a8fc088a8fde653, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NodePrefab: {fileID: 1771780963727126, guid: bea5037d7fb3fb143bab754f9c618eac, type: 2}
+  NodePrefab: {fileID: 1495672332823332, guid: 70f260752e1ca214c9065afae91f622b, type: 2}
   EdgePrefab: {fileID: 1887111784152414, guid: 59c7f65a33ef0484f9d766c51a73a626, type: 2}
 --- !u!75 &1629164531
 ConstantForce:
