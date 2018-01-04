@@ -8,9 +8,11 @@ namespace AssemblyCSharp
 	
 		public abstract AbstractGraphNode NewNode(AbstractModel data);
 
-		public abstract AbstractGraphEdge NewEdge(AbstractGraphNode from, AbstractGraphNode to);
+		public abstract AbstractGraphEdge NewEdge(AbstractGraphNode from, AbstractGraphNode to, int score);
 
-		public abstract AbstractGraphNode GetNodeById(long nodeId);
+        public abstract AbstractGraphEdge NewEdge(AbstractGraphNode from, AbstractGraphNode to);
+
+        public abstract AbstractGraphNode GetNodeById(long nodeId);
 
 		public abstract long CountAllEdges();
 

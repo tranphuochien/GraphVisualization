@@ -30,9 +30,19 @@ namespace AssemblyCSharp
 
         private Color GetColorByRelationshipScore(int score)
         {
+            Color positiveColor = new Color(0, 255, 0);
+            Color negativeColor = new Color(255, 0, 0);
 
-            //return default color
-            return new Color(127, 255, 0);
+            double factor = (Math.Abs(score) * 1.0) / 50;
+
+            if (score > 0)
+            {
+                return new Color((int)(positiveColor.r * factor), (int)(positiveColor.g * factor), (int)(positiveColor.b * factor));
+            }
+            else
+            {
+                return new Color((int)(negativeColor.r * factor), (int)(negativeColor.g * factor), (int)(negativeColor.b * factor));
+            }
         }
 
 		public AbstractGraphEdge GetGraphEdge()

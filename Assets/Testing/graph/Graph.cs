@@ -37,8 +37,13 @@ namespace AssemblyCSharp
         }
 
         public AbstractGraphEdge NewEdge(AbstractGraphNode from, AbstractGraphNode to)
+        {
+            return graphBackend.NewEdge(from, to);
+        }
+
+        public AbstractGraphEdge NewEdge(AbstractGraphNode from, AbstractGraphNode to, int score)
 		{
-			return graphBackend.NewEdge (from, to);
+			return graphBackend.NewEdge (from, to, score);
 		}
 
 		public void AddGraphListener(GraphListener graphListener)
