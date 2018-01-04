@@ -7,16 +7,22 @@ namespace AssemblyCSharp
 {
     public class MultiEdgesForSingleNodeGraphGenerator : AbstractGraphGenerator
     {
+        private readonly string sourceNodeData = "DCs.csv";
+        private readonly string sourceRelationshipData = "Relationships.csv";
 
         public override void GenerateGraph(Graph graph)
         {
             //AbstractGraphNode firstNode =  graph.NewNode();
             //AbstractGraphNode secondNode = graph.NewNode ();
             //AbstractGraphNode thirdNode = graph.NewNode ();
+            readData(graph);
+        }
 
+        private void readData(Graph graph)
+        {
             List<DCProfile> listCharacter = new List<DCProfile>();
             List<AbstractGraphNode> listNode = new List<AbstractGraphNode>();
-            using (var reader = new StreamReader(@"DCs.csv"))
+            using (var reader = new StreamReader(@sourceNodeData))
             {
                 while (!reader.EndOfStream)
                 {
@@ -29,7 +35,7 @@ namespace AssemblyCSharp
                 reader.Close();
             }
 
-            int[][] Relationships = File.ReadAllLines(@"Relationships.csv")
+            int[][] Relationships = File.ReadAllLines(@sourceRelationshipData)
                    .Select(l => l.Split(',').Select(i => int.Parse(i)).ToArray())
                    .ToArray();
 
