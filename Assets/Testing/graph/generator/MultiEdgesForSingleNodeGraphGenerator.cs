@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace AssemblyCSharp
 {
@@ -10,16 +13,48 @@ namespace AssemblyCSharp
             //AbstractGraphNode firstNode =  graph.NewNode();
             //AbstractGraphNode secondNode = graph.NewNode ();
             //AbstractGraphNode thirdNode = graph.NewNode ();
-            DCProfile tmp1 = new DCProfile(0, "Superman", "Kal - El", "Metropolis", "Hero", "Reporter", "https://www.facebook.com/superman", "http://www.dccomics.com/sites/default/files/styles/character_thumb_160x160/public/CharThumb_Rebirth_Superman_586ee06eddc447.49308496.jpg?itok=VvQpy2_u");
-            DCProfile tmp2 = new DCProfile(1, "Batman", "Bruce Wayne", "Gotham", "Hero", "CEO of Wayne Enterprises", "https://www.facebook.com/batman", "http://www.dccomics.com/sites/default/files/styles/character_thumb_160x160/public/CharThumb_Rebirth_Batman_586ee0e2dec3a9.16022233.jpg?itok=keF21kcJ");
-            DCProfile tmp3 = new DCProfile(2, "Krypto", "Krypto", "Metropolis", "Hero", "Family pet", "Unknown", "http://www.dccomics.com/sites/default/files/styles/character_thumb_160x160/public/CharThumb_215x215_krypto_52abac7b059a84.83507397.jpg?itok=N0P3xP5z");
-            AbstractGraphNode firstNode = graph.NewNode(Constant.DC_MODEL, tmp1);
-            AbstractGraphNode secondNode = graph.NewNode(Constant.DC_MODEL, tmp2);
-            AbstractGraphNode thirdNode = graph.NewNode(Constant.DC_MODEL, tmp3);
 
-            graph.NewEdge(firstNode, secondNode);
-            graph.NewEdge(secondNode, firstNode);
-            graph.NewEdge(secondNode, thirdNode);
+            List<DCProfile> listCharacter = new List<DCProfile>();
+            List<AbstractGraphNode> listNode = new List<AbstractGraphNode>();
+            using (var reader = new StreamReader(@"DCs.csv"))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    DCProfile myCharacter = new DCProfile(Int32.Parse(values[0]) - 1, values[1], values[2], values[3], values[4], values[5], values[6], values[7]);
+                    listCharacter.Add(myCharacter);
+                }
+
+                reader.Close();
+            }
+
+            int[][] Relationships = File.ReadAllLines(@"Relationships.csv")
+                   .Select(l => l.Split(',').Select(i => int.Parse(i)).ToArray())
+                   .ToArray();
+
+            foreach (DCProfile profile in listCharacter)
+            {
+                listNode.Add(graph.NewNode(Constant.DC_MODEL, profile));
+            }
+
+            int rowNum = Relationships.Length;
+            int colNum = 0;
+            if (rowNum != 0)
+            {
+                colNum = Relationships[0].Length;
+            }
+
+            for (int i = 0; i < rowNum; i++)
+            {
+                for (int j = 0; j < colNum; j++)
+                {
+                    if (Relationships[i][j] != 0)
+                    {
+                        graph.NewEdge(listNode[i], listNode[j], Relationships[i][j]);
+                    }
+                }
+            }
         }
     }
 }

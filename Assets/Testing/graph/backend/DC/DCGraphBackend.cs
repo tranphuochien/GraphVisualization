@@ -29,6 +29,14 @@ namespace AssemblyCSharp
             NotifyBackendEdgeCreated(newEdge);
             return newEdge;
         }
+
+        public override AbstractGraphEdge NewEdge(AbstractGraphNode from, AbstractGraphNode to, int score)
+        {
+            DCGraphEdge newEdge = new DCGraphEdge(AllGraphEdges.Count, from, to, score);
+            AllGraphEdges.Add(newEdge);
+            NotifyBackendEdgeCreated(newEdge);
+            return newEdge;
+        }
         
         public override AbstractGraphNode GetNodeById(long nodeId)
         {

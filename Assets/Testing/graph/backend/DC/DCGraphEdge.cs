@@ -12,6 +12,14 @@ namespace AssemblyCSharp
         private AbstractGraphNode startNode;
         private AbstractGraphNode endNode;
 
+        public DCGraphEdge(long id, AbstractGraphNode startNode, AbstractGraphNode endNode, int score)
+        {
+            this.id = id;
+            this.startNode = startNode;
+            this.endNode = endNode;
+            this.score = score;
+        }
+
         public DCGraphEdge(long id, AbstractGraphNode startNode, AbstractGraphNode endNode)
         {
             this.id = id;

@@ -16,7 +16,15 @@ namespace AssemblyCSharp
 			return newNode;
 		}
 
-		public override AbstractGraphEdge NewEdge (AbstractGraphNode from, AbstractGraphNode to)
+        public override AbstractGraphEdge NewEdge(AbstractGraphNode from, AbstractGraphNode to)
+        {
+            SimpleGraphEdge newEdge = new SimpleGraphEdge(AllGraphEdges.Count, from, to);
+            AllGraphEdges.Add(newEdge);
+            NotifyBackendEdgeCreated(newEdge);
+            return newEdge;
+        }
+
+        public override AbstractGraphEdge NewEdge (AbstractGraphNode from, AbstractGraphNode to, int score)
 		{
 			SimpleGraphEdge newEdge = new SimpleGraphEdge (AllGraphEdges.Count, from, to);
 			AllGraphEdges.Add (newEdge);
