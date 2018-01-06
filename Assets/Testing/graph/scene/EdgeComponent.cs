@@ -30,18 +30,37 @@ namespace AssemblyCSharp
 
         private Color GetColorByRelationshipScore(int score)
         {
-            Color positiveColor = new Color(0, 255, 0);
-            Color negativeColor = new Color(255, 0, 0);
+            Color positiveColor = new Color(0.29f, 0.78f, 0.31f);
+            Color negativeColor = new Color(0.78f, 0.22f, 0.21f);
 
             double factor = (Math.Abs(score) * 1.0) / 50;
 
             if (score > 0)
             {
-                return new Color((int)(positiveColor.r * factor), (int)(positiveColor.g * factor), (int)(positiveColor.b * factor));
+                float temp = (float) (positiveColor.g * factor);
+                if (temp > 1.0f)
+                {
+                    temp = 1.0f;
+                } else if (temp < 0.58f)
+                {
+                    temp = 0.58f;
+                }
+                Color temp1 = new Color((positiveColor.r), temp, (positiveColor.b));
+                return temp1;
             }
             else
             {
-                return new Color((int)(negativeColor.r * factor), (int)(negativeColor.g * factor), (int)(negativeColor.b * factor));
+                float temp = (float)(negativeColor.r * factor);
+                if (temp > 1.0f)
+                {
+                    temp = 1.0f;
+                }
+                else if (temp < 0.58f)
+                {
+                    temp = 0.58f;
+                }
+                Color temp1 = new Color(temp, (int)(negativeColor.g), (int)(negativeColor.b));
+                return temp1;
             }
         }
 
